@@ -1,0 +1,54 @@
+.text-editor {
+    font-family: Arial, sans-serif;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+    background-color: #fff;
+}
+
+.toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.left-buttons, .right-buttons {
+    display: flex;
+}
+
+.toolbar button {
+    margin-right: 5px;
+    padding: 8px 12px;
+    font-size: 14px;
+    cursor: pointer;
+    border: none;
+    background-color: #007bff; /* Blue color for buttons */
+    color: #fff; /* Text color for buttons */
+    border-radius: 4px;
+}
+
+.toolbar button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+.toolbar button:disabled {
+    background-color: #ccc; /* Gray color for disabled button */
+    cursor: not-allowed; /* Change cursor to indicate disabled state */
+}
+
+.editor {
+    width: 80%;
+    height: 80vh;
+    max-height: calc(80vh - 50px);
+    margin: 0 auto;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+    overflow-y: auto;
+}
+
+.editor:focus {
+    border-color: #007bff;
+}

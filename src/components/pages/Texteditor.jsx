@@ -11,6 +11,8 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import Quill from 'quill';
 
+import '../styles/Texteditor.css'; 
+
 const Texteditor = ({}) => {
   let Room_Id = 1;
   let Site_Id = generateUniqueInteger();
@@ -20,6 +22,20 @@ const Texteditor = ({}) => {
   const quillInstanceRef = useRef(null);
   const socketRef = useRef(null);
 
+  // Inside the Texteditor component
+  const [isEditable, setIsEditable] = useState(true); // Start with editing enabled
+
+  const toggleEdit = () => {
+    if (!isEditable)
+    {
+      quillInstanceRef.current.enable();
+    }
+    else{
+      quillInstanceRef.current.disable();
+    }
+    setIsEditable(prev => !prev); // Toggle the state
+  };
+
   const textChangeHandler = (delta, oldDelta, source) => {
     if (source === 'user') {
       delta.ops.forEach(op => {
@@ -28,7 +44,7 @@ const Texteditor = ({}) => {
           let index = getCaretIndex() - op.insert.length;
           if(getCaretIndex()==0)
             {
-                index+=1;
+                //index+=1;
             }
 
           console.log(`${getCaretIndex()}`)
@@ -68,10 +84,12 @@ const Texteditor = ({}) => {
     socketRef.current = new WebSocket('ws://localhost:8081/websocket');
 
     socketRef.current.onopen = function() {
+      setTimeout(() => {
       const message = new Message(MessageType.ConnectionOpening, Site_Id, Room_Id);
       const json = JSON.stringify(message);
       socketRef.current.send(json);
       console.log('WebSocket connection established.');
+      }, 100);
     };
 
     socketRef.current.onmessage = function(event) {
@@ -110,6 +128,7 @@ const Texteditor = ({}) => {
                 console.log("inserted :");
                 console.log(messageObject.getCharacter());
                 let object=CRDT_Obj.handleRemoteInsert(messageObject.getCharacter())
+                console.log("insertTextAtPosition: " + "Index: " +  object.getValue() + " ,Value: " + object.getIndex() + " ,Bold?: " + object.getisBold()+ " ,Italic?: " + object.getisItalic() )
                 insertTextAtPosition(object.getValue(),object.getIndex(),object.getisBold(),object.getisItalic())
                 break;
             case MessageType.Deleting:
@@ -132,6 +151,8 @@ const Texteditor = ({}) => {
                     }
                     console.log("bolding done");
                     console.log(CRDT_Obj.struct);
+                    console.log("start_italic: " + startBold);
+                    console.log("end_italic: " + endBold);
     
             
                     applyBoldToRange(startBold,endBold,isBold);
@@ -155,7 +176,8 @@ const Texteditor = ({}) => {
                     
                     console.log("itlaic done");
                     console.log(CRDT_Obj.struct);
-        
+                    console.log("start_italic: " + startItalic);
+                    console.log("end_italic: " + endItalic);
                 
                     applyItalicToRange(startItalic,endItalic,isItalic);
                         
@@ -167,6 +189,15 @@ const Texteditor = ({}) => {
      
     };
 
+    socketRef.current.onclose = function(event) {
+      console.log('WebSocket connection closed:', event);
+    };
+  
+    // onerror
+    socketRef.current.onerror = function(error) {
+      console.error('WebSocket error:', error);
+    };
+
     return () => {
       if (socketRef.current.readyState === WebSocket.OPEN) {
         socketRef.current.close();
@@ -176,6 +207,8 @@ const Texteditor = ({}) => {
 
   useEffect(() => {
     if (quillRef.current) {
+      // Set the initial size of the Quill editor
+
       quillInstanceRef.current = new Quill(quillRef.current, {
         theme: 'snow',
         modules: {
@@ -192,9 +225,9 @@ const Texteditor = ({}) => {
     return selection ? selection.index : null;
   };
 
-  const insertTextAtPosition = (text, index, isBold) => {
+  const insertTextAtPosition = (text, index, isBold, isItalic) => {
     disableTextChangeListener();
-    quillInstanceRef.current.insertText(index, text, { bold: isBold });
+    quillInstanceRef.current.insertText(index, text, { bold: isBold, italic: isItalic });
     enableTextChangeListener();
   };
 
@@ -284,10 +317,17 @@ function applyItalicToRange(startIndex, endIndex, isItalic) {
   };
 
   return (
-    <div>
-      <div id="editor-container" ref={quillRef}></div>
-      <button id="toggleBold" onClick={toggleBold}>Toggle Bold</button>
-      <button id="toggleItalic" onClick={toggleItalic}>Toggle Italic</button>
+    <div className="text-editor">
+      <div className="toolbar">
+      <div class="left-buttons">
+        <button onClick={toggleBold} disabled={!isEditable}>Bold</button>
+        <button onClick={toggleItalic} disabled={!isEditable}>Italic</button>
+        </div>
+        <div class="right-buttons">
+        <button onClick={toggleEdit}>{isEditable ? "Disable Editing" : "Enable Editing"}</button>
+        </div>
+      </div>
+      <div ref={quillRef} className="editor" />
     </div>
   );
 };
