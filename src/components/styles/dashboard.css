@@ -1,0 +1,175 @@
+/* dashboard.css */
+
+body {
+  /* background-image: url('../images/yoCvXJW-wallpaper-and-background.jpg'); */
+  background-size: cover; /* Cover the entire background */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+}
+
+
+/* Container Styles */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Document List Styles */
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+li:hover {
+  transform: translateY(-4px);
+}
+
+/* Button Styles */
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Button Styles */
+.button-container {
+  display: flex;
+  align-items: center;
+}
+
+.button-container button {
+  margin-right: 10px; /* Add space between buttons */
+}
+
+/* Document Name Styles */
+span {
+  cursor: pointer;
+  color: #333;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+span:hover {
+  color: #007bff;
+}
+
+/* Pagination Styles */
+.pagination-container {
+  display: flex;
+  justify-content:center; /* Align buttons to the right */
+  margin-top: 10px; /* Add some space between document list and pagination */
+}
+
+
+.pagination-container button {
+  margin-right: 10px; /* Add space between buttons */
+}
+
+
+/* Blur effect for the background */
+.blur-background {
+  filter: blur(3px); /* Adjust the blur intensity */
+}
+
+/*! Modal content Styles */
+.modal-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333; /* Adjust text color as needed */
+}
+
+.input-group {
+  margin-bottom: 20px;
+}
+
+.input-label {
+  display: block;
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.input-field {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc; /* Adjust border color as needed */
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.checkbox-label {
+  display: inline-block;
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+.checkbox-input {
+  display: none;
+}
+
+.checkbox-custom {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #ccc; /* Adjust border color as needed */
+  border-radius: 4px;
+  background-color: #fff;
+  position: relative;
+  vertical-align: middle;
+}
+
+.checkbox-input:checked + .checkbox-custom::after {
+  content: "";
+  display: block;
+  width: 10px;
+  height: 10px;
+  background-color: #007bff; /* Adjust checkmark color as needed */
+  border-radius: 2px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.share-button {
+  background-color: #007bff; /* Adjust button color as needed */
+  color: #fff; /* Button text color */
+  padding: 12px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s; /* Smooth hover effect */
+}
+
+.share-button:hover {
+  background-color: #0056b3; /* Darker button color on hover */
+}
+
+/* create */
+.create--button{
+  position: fixed; /* Position the button relative to the browser window */
+  bottom: 20px; /* Distance from the bottom of the window */
+}

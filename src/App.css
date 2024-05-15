@@ -1,0 +1,35 @@
+/* App.css */
+.navbar {
+  display: flex;
+  align-items: center;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  margin-left: 0px;
+  background-color: #333;
+  color: #fff;
+}
+.nav-button {
+  
+  display: inline-block;
+  padding: 10px 15px;
+  margin-left: 30px;
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.nav-button:hover {
+  background-color: #0056b3;
+}
+.content {
+  text-align: center;
+}
+
+.logo {
+  max-width: 100%;
+  margin-top: 16%; /* Adjust the margin as needed */
+  margin-left: 42%; /* Adjust the margin as needed */
+}
