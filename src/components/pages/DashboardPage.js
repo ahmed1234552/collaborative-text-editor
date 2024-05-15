@@ -50,10 +50,10 @@ function DashboardPage() {
 
   const handleOpenDocument = (document) => {
     // Implement logic to open the document
-    console.log(`Opening document: ${document.name}`);
+    console.log(`Opening document: ${document.name} with ID ${document.docId}`);
     // For now, just log the document name to the console
 
-    navigate("/text-editor/" + document.docId);
+    navigate(`/text-editor/${document.docId}`);
   };
 
   const handleRenameDocument = async () => {

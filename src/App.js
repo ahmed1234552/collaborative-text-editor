@@ -24,6 +24,7 @@ function Navbar() {
     location.pathname === "/signup" ||
     location.pathname === "/login" ||
     location.pathname === "/dashboard" ||
+    location.pathname === "/text-editor" ||
     isTextEditor
     // location.pathname === "/text-editor"
   ) {
@@ -50,7 +51,7 @@ function App() {
         <Routes>
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/text-editor/:id" element={<Texteditor />} />
+          <Route path="/text-editor/:documentId" element={<Texteditor />} />
           <Route
             path="/"
             element={<img src={logo} alt="Logo" className="logo" />}
