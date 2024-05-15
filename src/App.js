@@ -8,10 +8,11 @@ import {
 } from "react-router-dom";
 import Signup from "./components/pages/signup";
 import Login from "./components/pages/login";
-import TextEditor from "./components/pages/TextEditor";
+// import TextEditor from "./components/pages/TextEditor";
 import "./App.css"; // Import CSS file for styling
 import logo from "./images/logo.png"; // Import your image file
 import DashboardPage from "./components/pages/DashboardPage";
+import Texteditor from "./components/pages/Texteditor.jsx"; // Import QuillEditor component
 
 function Navbar() {
   const location = useLocation();
@@ -46,7 +47,7 @@ function App() {
         <Routes>
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/text-editor" element={<TextEditor />} />
+          <Route path="/text-editor" element={<Texteditor />} />
           <Route
             path="/"
             element={<img src={logo} alt="Logo" className="logo" />}
