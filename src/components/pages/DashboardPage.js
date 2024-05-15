@@ -52,6 +52,8 @@ function DashboardPage() {
     // Implement logic to open the document
     console.log(`Opening document: ${document.name}`);
     // For now, just log the document name to the console
+
+    navigate("/text-editor/" + document.docId);
   };
 
   const handleRenameDocument = async () => {
@@ -108,7 +110,7 @@ function DashboardPage() {
     }
     setModalOpen(false);
     console.log(
-      `Sharing document ${shareDocument.title} with ${selectedRecipient} (Can Edit: ${recipientCanEdit})`
+      `Sharing document ${shareDocument.title} with id ${shareDocument.docId} with ${selectedRecipient} (Can Edit: ${recipientCanEdit})`
     );
     try {
       // Make a POST request to share the document with the selected recipient
@@ -189,7 +191,7 @@ function DashboardPage() {
 
       // Reset the document name input field
       setDocumentName("");
-      navigate("/text-editor");
+      navigate("/text-editor/" + response.data.docId);
     } catch (error) {
       console.error("Error creating document:", error);
     }
@@ -246,7 +248,7 @@ function DashboardPage() {
         </div>
         {/* Invited Documents section */}
         <div>
-          <h3>Invited Documents</h3>
+          <h3>Shared Documents</h3>
           <ul>
             {/* Map through invited documents */}
             {invitedDocuments

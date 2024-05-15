@@ -11,19 +11,10 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 10px;
-    position: relative;
 }
 
-.left-buttons {
+.left-buttons, .right-buttons {
     display: flex;
-    margin-left: 12%; /* Shift 10% to the right */
-    transform: translateX(-12%);
-}
-
-.right-buttons {
-    display: flex;
-    margin-right: 12%; /* Shift 10% to the left */
-    transform: translateX(12%);
 }
 
 .toolbar button {

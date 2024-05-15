@@ -28,7 +28,7 @@ const LoginPage = () => {
       });
 
       const accessToken = response.data.access_token;
-      console.log("here");
+      console.log("login:");
       console.log(response);
       console.log(accessToken);
       // Set the access token in the Axios default headers
